@@ -1,0 +1,101 @@
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #004358;
+}
+
+body{
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+    font-family:'Noto Sans', sans-serif;
+
+}
+p ,h1,h2,h3,h4,h6
+{
+     padding: 0;
+    margin: 0;
+
+}
+
+
+ul 
+{
+    margin: 0;
+    padding:0;
+    list-style-type: none;
+}
+a
+{
+    text-decoration: none;
+    color: #004358;
+
+
+}
+
+
+header, section, footer
+{   
+    display: block;
+    width: 100%;
+    
+    
+}
+input
+{
+    box-sizing:border-box;
+}
+.clear{
+    clear: both;
+}
+
+/*960 responsive */
+
+.row
+{   position: relative;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0px 8px;
+}
+
+
+
+
+
+/*SITE CSS STARTS HERE*/
+
+.input-images img{
+    max-width: 120px;
+    margin: 8px;
+}
+
+.image-grid{
+    position: relative;
+    border: solid 1px #888;
+    margin: 22px; 
+    float: left;
+
+}
+.finalLayout{
+    border: solid 1px #888;
+    margin: 22px; 
+    float: left;
+
+}
+.wrapper{
+    overflow: hidden;
+    
+
+}
+.layout4 {
+    position: relative;
+}
+
+.image-grid img{
+    display: block;
+    
+}
