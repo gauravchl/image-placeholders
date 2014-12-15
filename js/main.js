@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 	function readURL(file, index) {
 	        var reader = new FileReader();
-	        
+
 	        reader.onload = function (e) {
 	        	var img = new Image();
 	        	img.onload = function(){
@@ -25,22 +25,22 @@ $(document).ready(function(){
 	        	img.src = e.target.result;
 	        	$('.input-images').append(img);
 	        }
-	        reader.readAsDataURL(file);	
+	        reader.readAsDataURL(file);
 	}
-    
+
     $("#file1").change(function () {
         images = [];
         $('.input-images').html('');
 
     	$.each(this.files,function(index, file){
-	        	readURL(file, index);	    
-	    })    	
+	        	readURL(file, index);
+	    })
     });
 
 
-    
 
-   
+
+
 
 
     startCalc =  function(){
@@ -68,14 +68,14 @@ $(document).ready(function(){
 
 
 
-        
+
     }
 
-    
+
     /*A function for calculating croped pixel to fit images in container*/
     calcPixel = function(imgWidth, imgHeight, cWidth, cHeight){
-        
-            
+
+
             rw =(imgWidth * (cHeight))/imgHeight;
             if(rw >= cWidth){
                 return rw - cWidth;
@@ -84,7 +84,7 @@ $(document).ready(function(){
                 rh =(imgHeight * cWidth)/imgWidth;
                 return rh - cHeight;
             }
-            
+
 
     }
     /*return a required property to set image on container, height or width*/
@@ -95,8 +95,8 @@ $(document).ready(function(){
             }else{
                 /*Here rh will be always >= cHeight*/
                 return 'width="'+cWidth+'"';
-                
-                
+
+
             }
     }
 
@@ -111,18 +111,18 @@ $(document).ready(function(){
             imgProperty = "width="+totalWidth;
             }else{
                 /*Here rh will be always >= cHeight*/
-                imgProperty = "height="+totalHeight;      
+                imgProperty = "height="+totalHeight;
             }
         }
         else{
            imgProperty = "";
-            
+
         }
-        
+
         layout1 = $('<div class="image-grid layout1"></div>');
         layout1.append('<a href="javascript:;"><div class="wrapper" style="max-width:'+totalWidth+'px;max-height:'+totalHeight+'px;"><img '+imgProperty+' style=""  src="'+images[0].img+'"></div></a>');
         $('section.main .row').prepend(layout1);
-        
+
     }
 
     twoImageLayout= function(){
@@ -138,15 +138,15 @@ $(document).ready(function(){
 
         layout2.append('<a href="javascript:;"><div class="wrapper" style="max-width:'+totalWidth+'px;max-height:'+totalHeight/2+'px;"><img '+calcProperty(images[0].width, images[0].height, totalWidth, totalHeight/2)+' style=""  src="'+images[0].img+'"></div></a>');
         layout2.append('<a href="javascript:;"><div class="wrapper" style="max-width:'+totalWidth+'px;max-height:'+totalHeight/2+'px;"><img '+calcProperty(images[1].width, images[1].height, totalWidth, totalHeight/2)+' style=""  src="'+images[1].img+'"></div></a>');
-        layout2.append('<p style="position:absolute;top:-24px;left:0px;">Score: '+score1+'</p>')
+        layout2.append('<p>Score: '+score1+'</p>')
 
         layout3.append('<a href="javascript:;"><div class="wrapper" style="max-width:'+totalWidth/2+'px;max-height:'+totalHeight/2+'px;float:left;"><img '+calcProperty(images[0].width, images[0].height, totalWidth/2, totalHeight/2)+' style=""  src="'+images[0].img+'"></div></a>');
         layout3.append('<a href="javascript:;"><div class="wrapper" style="max-width:'+totalWidth/2+'px;max-height:'+totalHeight/2+'px;float:left;"><img '+calcProperty(images[1].width, images[1].height, totalWidth/2, totalHeight/2)+' style=""  src="'+images[1].img+'"></div></a>');
-        layout3.append('<p style="position:absolute;top:-24px;left:0px;">Score: '+score2+'</p>')
+        layout3.append('<p>Score: '+score2+'</p>')
 
         $('section.main .row').prepend(layout2);
         $('section.main .row').prepend(layout3);
-        
+
         if(score1 < score2){
             /*applyLayout(2);*/
         }else{
@@ -157,10 +157,10 @@ $(document).ready(function(){
 
     threeImageLayout = function(){
         /*There are 3 layouts for three images Layout4, Layout5, Layout6*/
-        
+
         /*First see all combination of layout 4*/
         totalImages = 3;
-        
+
         for(var i=0;i<totalImages;i++){
             a=i;
             b=(i+1)%totalImages;
@@ -173,9 +173,9 @@ $(document).ready(function(){
             layout4.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth/2+'px; max-height:'+totalHeight/2+'px;"><img '+calcProperty(images[c].width, images[c].height, totalWidth/2, totalHeight/2)+' style=""  src="'+images[c].img+'"></div></a>');
 
             score = calcPixel(images[a].width, images[a].height, totalWidth, totalHeight/2) + calcPixel(images[b].width, images[b].height, totalWidth/2, totalHeight/2) + calcPixel(images[c].width, images[c].height, totalWidth/2, totalHeight/2);
-            layout4.append('<p style="position:absolute;top:-24px;left:0px;">Score: '+score+'</p>')
+            layout4.append('<p>Score: '+score+'</p>')
             $('section.main .row').append(layout4);
-            
+
         }
         $('section.main .row').append('<div class="clear"></div><br><br>');
 
@@ -188,14 +188,15 @@ $(document).ready(function(){
             layout5 = $('<div class="image-grid layout5" style="max-width:'+totalWidth+'px;"></div>')
 
             layout5.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth+'px;max-height:'+totalHeight*2/3+'px;"><img '+calcProperty(images[a].width, images[a].height, totalWidth, totalHeight*2/3)+' style=""  src="'+images[a].img+'"></div></a>');
-            layout5.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth/2+'px;max-height:'+totalHeight/3+'px;"><img '+calcProperty(images[b].width, images[b].height, totalWidth/2, totalHeight/3)+' style=""  src="'+images[b].img+'"></div></a>');
+
             layout5.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth/2+'px;max-height:'+totalHeight/3+'px;"><img '+calcProperty(images[c].width, images[c].height, totalWidth/2, totalHeight/3)+' style=""  src="'+images[c].img+'"></div></a>');
+            layout5.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth/2+'px;max-height:'+totalHeight/3+'px;"><img '+calcProperty(images[b].width, images[b].height, totalWidth/2, totalHeight/3)+' style=""  src="'+images[b].img+'"></div></a>');
 
             score = calcPixel(images[a].width, images[a].height, totalWidth, totalHeight*2/3) + calcPixel(images[b].width, images[b].height, totalWidth/2, totalHeight/3) + calcPixel(images[c].width, images[c].height, totalWidth/2, totalHeight/3);
-            layout5.append('<p style="position:absolute;top:-24px;left:0px;">Score: '+score+'</p>')
+            layout5.append('<p>Score: '+score+'</p>')
             $('section.main .row').append(layout5);
 
-            
+
         }
         $('section.main .row').append('<div class="clear"></div><br><br>');
         /*Now all Combination of layout 6*/
@@ -211,17 +212,17 @@ $(document).ready(function(){
             layout6.append('<a href="javascript:;"><div class="wrapper" style="float:left;max-width:'+totalWidth+'px;max-height:'+totalHeight/3+'px;"><img '+calcProperty(images[c].width, images[c].height, totalWidth, totalHeight/3)+' style=""  src="'+images[c].img+'"></div></a>');
 
             score = calcPixel(images[a].width, images[a].height, totalWidth/2, totalHeight*2/3) + calcPixel(images[b].width, images[b].height, totalWidth/2, totalHeight*2/3) + calcPixel(images[c].width, images[c].height, totalWidth, totalHeight/3);
-            layout6.append('<p style="position:absolute;top:-24px;left:0px;">Score: '+score+'</p>')
+            layout6.append('<p>Score: '+score+'</p>')
             $('section.main .row').append(layout6);
 
-            
+
         }
 
     }
 
 
 
-    
+
 
     applyLayout = function(layout){
         $('.finalLayout').html('');
@@ -242,5 +243,5 @@ $(document).ready(function(){
     }
 
     $('.btn-apply').click(function(){startCalc();})
-	
+
 });

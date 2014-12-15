@@ -12,6 +12,8 @@ body{
     padding: 0;
     margin: 0;
     font-family:'Noto Sans', sans-serif;
+    background: #EBEBEB;
+    padding-top: 52px;
 
 }
 p ,h1,h2,h3,h4,h6
@@ -22,7 +24,7 @@ p ,h1,h2,h3,h4,h6
 }
 
 
-ul 
+ul
 {
     margin: 0;
     padding:0;
@@ -38,11 +40,11 @@ a
 
 
 header, section, footer
-{   
+{
     display: block;
     width: 100%;
-    
-    
+
+
 }
 input
 {
@@ -56,17 +58,52 @@ input
 
 .row
 {   position: relative;
-    max-width: 1920px;
+    max-width: 1080px;
     margin: 0 auto;
     overflow: hidden;
     padding: 0px 8px;
 }
 
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float:right;
+}
 
-
+.btn{
+    border-radius: 2px;
+    padding: 0 18px;
+    background: #ff5353;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    line-height: 38px;
+}
 
 
 /*SITE CSS STARTS HERE*/
+header{
+    background: #ff5353;
+    color: #fff;
+    font-size: 1em;
+    line-height: 52px;
+    box-shadow: 2px 2px 4px -2px #000;
+    z-index: 99999999;
+    position: fixed;
+    top: 0px;
+}
+.social-icon{
+    font-size: 1.375em;
+}
+.social-icon li{
+    float: left;
+    cursor: pointer;
+    margin-left: 12px;
+}
+.social-icon a{
+    color: #fff;
+}
 
 .input-images img{
     max-width: 120px;
@@ -75,21 +112,23 @@ input
 
 .image-grid{
     position: relative;
-    border: solid 1px #888;
-    margin: 22px; 
+    margin: 22px;
     float: left;
-
+}
+.image-grid p{
+    background: #FF5353;
+    line-height: 44px;
+    padding: 0 8px;
+    color: #FFF;
 }
 .finalLayout{
     border: solid 1px #888;
-    margin: 22px; 
+    margin: 22px;
     float: left;
 
 }
 .wrapper{
     overflow: hidden;
-    
-
 }
 .layout4 {
     position: relative;
@@ -97,5 +136,20 @@ input
 
 .image-grid img{
     display: block;
-    
+
+}
+.upload-btn{
+    position: relative;
+    font-size: 0.75em;
+
+}
+.upload-btn #file1{
+    opacity: 0;
+    z-index: 99999;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
