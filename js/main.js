@@ -19,21 +19,20 @@ $(document).ready(function(){
 	        reader.onload = function (e) {
 	        	var img = new Image();
 	        	img.onload = function(){
-	        		images.push({img: e.target.result, width: this.width, height: this.height});
-
+                    id = newImgId();
+	        		images.push({_id: id, img: e.target.result, width: this.width, height: this.height});
+                    ele = $("<div class='img-container' data-id='"+id+"'><div class='btn-close' title='Remove Image'></div></div>").append(img);;
+                    $('.input-images').append(ele);
 	        	}
 	        	img.src = e.target.result;
-	        	$('.input-images').append(img);
+
 	        }
 	        reader.readAsDataURL(file);
 	}
 
     $("#file1").change(function () {
-        images = [];
-        $('.input-images').html('');
-
     	$.each(this.files,function(index, file){
-	        	readURL(file, index);
+	        readURL(file, index);
 	    })
     });
 
@@ -42,7 +41,13 @@ $(document).ready(function(){
 
 
 
+    $('.input-images').on("click",".img-container .btn-close",function(e){
+        ele = $(e.currentTarget);
+        imgId = ele.parents('.img-container').attr('data-id')
+        ele.parents('.img-container').remove()
+        removeImage(imgId);
 
+    });
     startCalc =  function(){
 
         $('.image-grid').remove();
@@ -245,3 +250,27 @@ $(document).ready(function(){
     $('.btn-apply').click(function(){startCalc();})
 
 });
+
+removeImage = function(id){
+
+    images.forEach(function(img, index){
+        if(img._id == id){
+            images.splice(index, 1);
+        }
+    });
+
+    for(var i=0; i< images.length; i++){
+        if(images[i]._id == id){
+
+        }
+    }
+
+}
+
+newImgId = function(){
+    if(images.length == 0){
+        return 0;
+    }else{
+        return parseInt(images[images.length - 1]._id) + 1;
+    }
+}

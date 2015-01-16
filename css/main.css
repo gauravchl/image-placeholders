@@ -1,4 +1,3 @@
-
 html,
 button,
 input,
@@ -6,72 +5,60 @@ select,
 textarea {
     color: #004358;
 }
-
-body{
+body {
     font-size: 100%;
     padding: 0;
     margin: 0;
-    font-family:'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     background: #EBEBEB;
     padding-top: 52px;
-
 }
-p ,h1,h2,h3,h4,h6
-{
-     padding: 0;
+p,
+h1,
+h2,
+h3,
+h4,
+h6 {
+    padding: 0;
     margin: 0;
-
 }
-
-
-ul
-{
+ul {
     margin: 0;
-    padding:0;
+    padding: 0;
     list-style-type: none;
 }
-a
-{
+a {
     text-decoration: none;
     color: #004358;
-
-
 }
-
-
-header, section, footer
-{
+header,
+section,
+footer {
     display: block;
     width: 100%;
-
-
 }
-input
-{
-    box-sizing:border-box;
+input {
+    box-sizing: border-box;
 }
-.clear{
+.clear {
     clear: both;
 }
 
-/*960 responsive */
-
-.row
-{   position: relative;
+/* 960 responsive */
+.row {
+    position: relative;
     max-width: 1080px;
     margin: 0 auto;
     overflow: hidden;
     padding: 0px 8px;
 }
-
-.pull-left{
+.pull-left {
     float: left;
 }
-.pull-right{
-    float:right;
+.pull-right {
+    float: right;
 }
-
-.btn{
+.btn {
     border-radius: 2px;
     padding: 0 18px;
     background: #ff5353;
@@ -80,70 +67,92 @@ input
     cursor: pointer;
     line-height: 38px;
 }
+.btn-circle {
+    font-size: 2em;
+    border-radius: 100%;
+    padding: 0 12px;
+    line-height: 42px;
+}
+.btn-circle:active {
+    box-shadow: none;
+}
+.btn-close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background: #FC2B2B;
+    color: #FFF;
+    font-size: 28px;
+    line-height: 16px;
+    cursor: pointer;
+}
+.btn-close:before {
+    content: '\00d7';
+}
+.shadow-1 {
+    box-shadow: 2px 2px 4px -2px #000;
+}
+.shadow-2 {
+    box-shadow: 2px 2px 6px -2px #000;
+}
 
-
-/*SITE CSS STARTS HERE*/
-header{
+/* SITE CSS STARTS HERE */
+header {
     background: #ff5353;
     color: #fff;
     font-size: 1em;
     line-height: 52px;
-    box-shadow: 2px 2px 4px -2px #000;
     z-index: 99999999;
     position: fixed;
     top: 0px;
 }
-.social-icon{
+.social-icon {
     font-size: 1.375em;
 }
-.social-icon li{
+.social-icon li {
     float: left;
     cursor: pointer;
     margin-left: 12px;
 }
-.social-icon a{
+.social-icon a {
     color: #fff;
 }
-
-.input-images img{
-    max-width: 120px;
-    margin: 8px;
+.input-images {
+    position: relative;
+    margin-top: 32px;
 }
-
-.image-grid{
+.input-images img {
+    max-width: 120px;
+}
+.image-grid {
     position: relative;
     margin: 22px;
     float: left;
 }
-.image-grid p{
+.image-grid p {
     background: #FF5353;
     line-height: 44px;
     padding: 0 8px;
     color: #FFF;
 }
-.finalLayout{
+.finalLayout {
     border: solid 1px #888;
     margin: 22px;
     float: left;
-
 }
-.wrapper{
+.wrapper {
     overflow: hidden;
 }
 .layout4 {
     position: relative;
 }
-
-.image-grid img{
+.image-grid img {
     display: block;
-
 }
-.upload-btn{
+.upload-btn {
     position: relative;
-    font-size: 0.75em;
-
 }
-.upload-btn #file1{
+.upload-btn #file1 {
     opacity: 0;
     z-index: 99999;
     position: absolute;
@@ -152,4 +161,17 @@ header{
     width: 100%;
     height: 100%;
     cursor: pointer;
+}
+.upload-container {
+    background: #FFF;
+    padding: 8px;
+    min-height: 242px;
+}
+.img-container img {
+    display: block;
+}
+.img-container {
+    position: relative;
+    float: left;
+    margin: 8px;
 }
