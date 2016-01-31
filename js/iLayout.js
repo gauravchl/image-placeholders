@@ -1,7 +1,7 @@
 window.iLayout = (function(){
 
-  var _cHeight = 400;
-  var _cWidth  = 400;
+  var _cHeight = 350;
+  var _cWidth  = 350;
 
   var exports = {};
 
@@ -25,32 +25,30 @@ window.iLayout = (function(){
 
 
   var oneImageLayout = function(images){
-    var constant = getFrameInfo(images[0].width, images[0].height, _cWidth, _cHeight).constant;
-    return {posA : {_id:images[0]._id, className:'ilayout l-1 pos-0 ' + constant } }
+    //var constant = getFrameInfo(images[0].iWidth, images[0].iHeight, _cWidth, _cHeight).constant;
+    images[0].className = 'ilayout l-1 pos-0 width'
+    return images;
   }
 
 
 
   var twoImageLayout = function(images){
-    var result = {};
-    images[0].l2posA = getFrameInfo(images[0].width, images[0].height, _cWidth/2, _cHeight/2)
-    images[1].l2posB = getFrameInfo(images[0].width, images[0].height, _cWidth/2, _cHeight/2)
-    images[0].l3posA = getFrameInfo(images[0].width, images[0].height, _cWidth/2, _cHeight)
-    images[1].l3posB = getFrameInfo(images[0].width, images[0].height, _cWidth/2, _cHeight)
+    var l2posA = getFrameInfo(images[0].iWidth, images[0].iHeight, _cWidth/2, _cHeight/2)
+    var l2posB = getFrameInfo(images[1].iWidth, images[1].iHeight, _cWidth/2, _cHeight/2)
+    var l3posA = getFrameInfo(images[0].iWidth, images[0].iHeight, _cWidth,   _cHeight/2)
+    var l3posB = getFrameInfo(images[1].iWidth, images[1].iHeight, _cWidth,   _cHeight/2)
 
-    var layout2Score = images[0].l2posA.croopedPixel + images[1].l2posB.croopedPixel;
-    var layout3Score = images[0].l3posA.croopedPixel + images[1].l3posB.croopedPixel;
+    var layout2Score = l2posA.croopedPixel + l2posB.croopedPixel;
+    var layout3Score = l3posA.croopedPixel + l3posB.croopedPixel;
 
     if(layout2Score < layout3Score){
-        result.posA = {_id:images[0]._id, className:'ilayout l-2 pos-0 ' + images[0].l2posA.constant };
-        result.posB = {_id:images[1]._id, className:'ilayout l-2 pos-1 ' + images[1].l2posB.constant };
-        result.score = layout2Score;
+        images[0].className = 'ilayout l-2 pos-0 ' + l2posA.constant;
+        images[1].className = 'ilayout l-2 pos-1 ' + l2posB.constant;
     }else{
-        result.posA = {_id:images[0]._id, className:'ilayout l-3 pos-0 ' + images[0].l3posA.constant }
-        result.posB = {_id:images[1]._id, className:'ilayout l-3 pos-1 ' + images[1].l3posB.constant }
-        result.score = layout3Score;
+        images[0].className = 'ilayout l-3 pos-0 ' + l3posA.constant;
+        images[1].className = 'ilayout l-3 pos-1 ' + l3posB.constant;
     }
-    return result;
+    return images;
   }
 
 
@@ -58,33 +56,32 @@ window.iLayout = (function(){
   // There will be 3 layouts & total 9 possible combinations
   var threeImageLayout = function(images){
     var score = null;
-    var result = {};
 
     for(var i = 0; i<3 ; i++){
-      var hf1 = 0.5;
-      var hf2 = 0.5;
-      if(i==1){hf1 = 2/3; hf2 = 1/3}
-      if(i==2){hf1 = 1/3; hf2 = 2/3}
+      var hf1 = hf2 = hf3 = 0.5;
+      var wf1 = 1;
+      var wf2 = wf3 = 0.5;
+      if(i==1){hf1 = 2/3; hf2 = hf3 = 1/3;}
+      if(i==2){hf1 = hf2 = 2/3; hf3 = 1/3; wf1 = wf2 = 0.5; wf3 = 1;}
 
       for(var j = 0; j<3; j++){
         var l = j % 3;
         var m = (j+1) % 3;
         var n = (j+2) % 3;
 
-        var x1 =  getFrameInfo(images[l].width, images[l].height, _cWidth,   _cHeight*hf1);
-        var x2 =  getFrameInfo(images[m].width, images[m].height, _cWidth/2, _cHeight*hf2);
-        var x3 =  getFrameInfo(images[n].width, images[n].height, _cWidth/2, _cHeight*hf2);
+        var x1 =  getFrameInfo(images[l].iWidth, images[l].iHeight, _cWidth*wf1, _cHeight*hf1);
+        var x2 =  getFrameInfo(images[m].iWidth, images[m].iHeight, _cWidth*wf2, _cHeight*hf2);
+        var x3 =  getFrameInfo(images[n].iWidth, images[n].iHeight, _cWidth*wf3, _cHeight*hf3);
 
         if(score == null || score > (x1.croopedPixel+x2.croopedPixel+x3.croopedPixel)){
           score = x1.croopedPixel + x2.croopedPixel + x3.croopedPixel;
-          result.posA = {_id:images[l]._id, className:'ilayout l-'+(i+4)+' pos-0 '+ x1.constant };
-          result.posB = {_id:images[m]._id, className:'ilayout l-'+(i+4)+' pos-1 '+ x2.constant };
-          result.posC = {_id:images[n]._id, className:'ilayout l-'+(i+4)+' pos-2 '+ x3.constant };
-          result.score = score;
+          images[l].className = 'ilayout l-'+(i+4)+' pos-0 '+ x1.constant;images[l].pos = 0;
+          images[m].className = 'ilayout l-'+(i+4)+' pos-1 '+ x2.constant;images[m].pos = 1;
+          images[n].className = 'ilayout l-'+(i+4)+' pos-2 '+ x3.constant;images[n].pos = 2;
         }
       }
     }
-    return result;
+    return images.sort(function(a, b){return a.pos - b.pos});
   }
 
 
